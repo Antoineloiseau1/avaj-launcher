@@ -1,5 +1,7 @@
 package fr.avaj.simulator;
 
+import fr.avaj.exceptions.InvalidAircraftTypeException;
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
   this Singleton class also has a factory design pattern.
   Here I decided to use the build-in enum special Java class and its
@@ -21,7 +23,7 @@ enum AircraftFactory {
     INSTANCE;
     private static int count = 1;
 
-    public Flyable newAircraft(String p_type, String p_name, Coordinates p_coordinates) {
+    public Flyable newAircraft(String p_type, String p_name, Coordinates p_coordinates) throws InvalidAircraftTypeException {
         return switch (p_type) {
             case "Helicopter" ->
                 new Helicopter(count++, p_name, p_coordinates);
@@ -30,7 +32,7 @@ enum AircraftFactory {
             case "Baloon" ->
                 new Baloon(count++, p_name, p_coordinates);
             default ->
-                throw new IllegalArgumentException("Aircraft type not supported: " + p_type);
+                throw new InvalidAircraftTypeException("Aircraft type not supported: " + p_type);
         };
     }
 }

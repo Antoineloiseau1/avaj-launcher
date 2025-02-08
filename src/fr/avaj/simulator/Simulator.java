@@ -1,51 +1,60 @@
 package fr.avaj.simulator;
 
+import fr.avaj.exceptions.SimulationsNumberException;
+import java.io.*;
+import java.util.*;
+
 public class Simulator {
 
     public static void main(String[] args) {
-        AircraftFactory factory = AircraftFactory.INSTANCE;
-        WeatherTower tower = new WeatherTower();
-        Flyable h = factory.newAircraft("Baloon", "B2", new Coordinates(2, 2, 4));
-        Flyable b = factory.newAircraft("Baloon", "B1", new Coordinates(1, 2, 4));
-        h.registerTower(tower);
-        b.registerTower(tower);
-        b.updateConditions();
-        h.updateConditions();
+        if (args.length != 1) {
+            System.out.println("Usage: [file.txt]");
+        } else {
+            List<String[]> tokens = tokenizeFile(args[0]);
+            int simulations;
+            try {
+                simulations = parseSimulations(tokens.get(0)); //first line of the file 
+            } catch (SimulationsNumberException sne) {
+                System.out.println(sne.getMessage());
+                return;
+            }
+            System.out.println(simulations);
+        }
 
-        //     if (args.length != 1) {
-        //         System.out.println("Usage: [file.txt]");
-        //     } else {
-        //         int simulations;
-        //         File scenario = new File(args[0]);
-        //         try (Scanner scanner = new Scanner(scenario)) {
-        //             ArrayList<String[]> tokens = new ArrayList<>();
-        //             while (scanner.hasNextLine()) {
-        //                 String currentLine = scanner.nextLine();
-        //                 tokens.add(currentLine.split(" "));
-        //             }
-        //             if (isInteger(tokens.get(0)[0])) {  //first line 
-        //                 simulations = Integer.parseInt(tokens.get(0)[0]);
-        //             } else {
-        //                 System.out.println("Error: Invalid input file.");
-        //                 return;
-        //             }
-        //             for (String[] line : tokens) {
-        //                 for (int i = 0; line.length > i; i++) {
-        //                     System.out.println(line[i]);
-        //                 }
-        //             }
-        //         } catch (FileNotFoundException e) {
-        //             System.out.println("Error: File not found - " + scenario.getAbsolutePath());
-        //         }
-        //     }
-        // }
-        // public static boolean isInteger(String str) {
-        //     try {
-        //         Integer.parseInt(str);
-        //         return true;
-        //     } catch (NumberFormatException e) {
-        //         return false;
-        //     }
-        // }
+    }
+
+    private static List<String[]> tokenizeFile(String fileName) {
+        List<String[]> tokens = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+                String[] words = line.split("\\s+"); // Whitespace characters
+                tokens.add(words);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
+        return tokens;
+    }
+
+    private static int parseSimulations(String[] firstline) throws SimulationsNumberException {
+        SimulationsNumberException sne = new SimulationsNumberException(
+                "[line 1]: Unexpected format:  \""
+                + String.join(" ", firstline)
+                + "\"\nExpected positive number"
+        );
+        if (firstline.length > 1) {
+            throw sne;
+        }
+        int simulations = 0;
+        try {
+            simulations = Integer.parseInt(firstline[0]);
+            if (simulations < 1) {
+                throw sne;
+            }
+        } catch (NumberFormatException nfe) {
+            throw sne;
+        }
+        return simulations;
     }
 }

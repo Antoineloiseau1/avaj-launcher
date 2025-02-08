@@ -8,6 +8,7 @@ public class WeatherTower extends Tower {
     }
 
     public void weatherChanged() {
+        WeatherProvider.getInstance().updateSimulationSteps();
         conditionChanged();
     }
 }

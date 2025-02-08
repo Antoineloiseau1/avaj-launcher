@@ -7,24 +7,25 @@ class Baloon extends Aircraft {
     }
 
     @Override
-    public void updateConditions() {
-        String weather = weatherTower.getWeather(coordinates);
+    protected void handleWeather(String weather) {
         switch (weather) {
+            case "SUN":
+                System.out.println("To the Moon!");
+                updateCoordinates(2, 0, 4);
+                break;
             case "RAIN":
-                System.out.println(this.getClass().getSimpleName() + ": It's Raining");
+                System.out.println("We are getting wet here!");
+                updateCoordinates(0, 0, -5);
                 break;
             case "FOG":
-                System.out.println(this.getClass().getSimpleName() + ": It's FOGGY");
-                break;
-            case "SUN":
-                System.out.println(this.getClass().getSimpleName() + ": It's Sunny");
+                System.out.println("At least we are getting up...");
+                updateCoordinates(0, 0, -3);
                 break;
             case "SNOW":
-                System.out.println(this.getClass().getSimpleName() + ": It's Snowy");
+                System.out.println("Time to make snowmen...");
+                updateCoordinates(0, 0, -15);
                 break;
-            default:
-                throw new AssertionError();
+
         }
     }
-
 }

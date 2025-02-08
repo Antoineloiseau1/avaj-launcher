@@ -2,6 +2,7 @@ package fr.avaj.simulator;
 
 class WeatherProvider {
 
+    private int simulationSteps = 0;
     static WeatherProvider weatherProvider; // The only instance of the Singleton
     private final String[] weather = {
         "RAIN",
@@ -24,9 +25,12 @@ class WeatherProvider {
         return weatherProvider;
     }
 
+    public void updateSimulationSteps() {
+        simulationSteps++;
+    }
+
     public String getCurrentWeather(Coordinates p_coordinates) {
-        //need a better weather algorithm, weather changes over time at p_coordinates
-        int rand = (p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight()) % 4;
+        int rand = (p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight() + simulationSteps) % 4;
         return weather[rand];
     }
 }

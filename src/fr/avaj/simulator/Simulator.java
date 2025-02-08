@@ -1,5 +1,8 @@
 package fr.avaj.simulator;
 
+import fr.avaj.exceptions.InvalidAircraftTypeException;
+import fr.avaj.exceptions.InvalidCoordinatesException;
+import fr.avaj.exceptions.InvalidScenarioException;
 import fr.avaj.exceptions.SimulationsNumberException;
 import java.io.*;
 import java.util.*;
@@ -10,24 +13,30 @@ public class Simulator {
         if (args.length != 1) {
             System.out.println("Usage: [file.txt]");
         } else {
+
             List<String[]> tokens = tokenizeFile(args[0]);
             int simulations = 0;
+
             try {
                 simulations = parseSimulations(tokens.get(0)); //first line of the file 
             } catch (SimulationsNumberException sne) {
                 System.out.println(sne.getMessage());
                 return;
             }
+
             WeatherTower tower = new WeatherTower();
             List<Flyable> flyables = null;
             try {
                 flyables = parseFile(tokens.subList(1, tokens.size()));
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                return;
             }
+
             for (Flyable flyable : flyables) {
                 flyable.registerTower(tower);
             }
+
             while (simulations-- > 0) {
                 tower.conditionChanged();
             }
@@ -50,19 +59,19 @@ public class Simulator {
         return tokens;
     }
 
-    private static List<Flyable> parseFile(List<String[]> tokens) {
+    private static List<Flyable> parseFile(List<String[]> tokens) throws InvalidScenarioException {
         AircraftFactory factory = AircraftFactory.INSTANCE;
         List<Flyable> flyables = new ArrayList<>();
         int i = 2;
         for (String[] line : tokens) {
             if (line.length != 5) {
-                throw new IllegalArgumentException("[Line " + i + "]: Invalid format: \"" + String.join(" ", line) + "\"\nexpected: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]"); //TODO: Custom Exception Here
+                throw new InvalidScenarioException("[Line " + i + "]: Invalid format: \"" + String.join(" ", line) + "\"\nexpected: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]"); //TODO: Custom Exception Here
             }
             try {
                 flyables.add(factory.newAircraft(line[0], line[1], new Coordinates(Integer.parseInt(line[2]), Integer.parseInt(line[3]), Integer.parseInt(line[4]))));
-            } catch (Exception e) {
+            } catch (InvalidCoordinatesException | InvalidAircraftTypeException e) {
                 System.out.print("[Line " + i + "]: ");
-                System.out.println(e.getMessage());
+                throw e;
             }
             i++;
         }

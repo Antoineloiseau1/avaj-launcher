@@ -13,7 +13,7 @@ public class Coordinates {
             throw new InvalidCoordinatesException("Coordinates cannot be negative");
         }
         if (height > 100) {
-            throw new InvalidCoordinatesException("Height must be less than 100");
+            throw new InvalidCoordinatesException("Height must not exceed 100");
         }
         this.longitude = longitude;
         this.latitude = latitude;

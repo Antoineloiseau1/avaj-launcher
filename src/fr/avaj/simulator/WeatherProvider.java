@@ -30,7 +30,7 @@ class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates p_coordinates) {
-        int rand = (p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight() + simulationSteps) % 4;
+        int rand = ((p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight()) * simulationSteps) % 4;
         return weather[rand];
     }
 }

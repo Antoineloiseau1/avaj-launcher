@@ -23,7 +23,7 @@ class JetPlane extends Aircraft {
                 break;
             case "SNOW":
                 System.out.println("Well, if this keeps up, we might land in a snow globe!");
-                updateCoordinates(0, 0, 7);
+                updateCoordinates(0, 0, -7);
                 break;
         }
     }

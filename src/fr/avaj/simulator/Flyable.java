@@ -13,7 +13,7 @@ public abstract class Flyable {
         a conditionChanged(). 
     * * * * * * * * * * * * * * * * * * * * */
     public void registerTower(WeatherTower p_tower) {
-        this.weatherTower = p_tower;
+        weatherTower = p_tower;
         weatherTower.register(this);
     }
 }

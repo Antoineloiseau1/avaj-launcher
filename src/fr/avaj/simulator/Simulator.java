@@ -67,7 +67,7 @@ public class Simulator {
                 }
 
                 while (simulations-- > 0) {
-                    tower.conditionChanged();
+                    tower.weatherChanged();
                 }
                 pStream.close();
             } catch (Exception e) {

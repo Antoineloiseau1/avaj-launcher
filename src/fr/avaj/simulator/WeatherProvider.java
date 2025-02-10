@@ -1,8 +1,10 @@
 package fr.avaj.simulator;
 
+import java.util.Random;
+
 class WeatherProvider {
 
-    private int simulationSteps = 0;
+    int rand = 0;
     static WeatherProvider weatherProvider; // The only instance of the Singleton
     private final String[] weather = {
         "RAIN",
@@ -25,12 +27,14 @@ class WeatherProvider {
         return weatherProvider;
     }
 
-    public void updateSimulationSteps() {
-        simulationSteps++;
+    public void randomize() {
+        Random random = new Random();
+        rand = random.nextInt(100) + 1;
+
     }
 
     public String getCurrentWeather(Coordinates p_coordinates) {
-        int rand = ((p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight()) * simulationSteps) % 4;
-        return weather[rand];
+        int index = ((p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight()) + rand) % 4;
+        return weather[index];
     }
 }

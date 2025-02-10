@@ -1,6 +1,6 @@
 package fr.avaj.simulator;
 
-public abstract class Flyable {
+abstract class Flyable {
 
     protected WeatherTower weatherTower;
 

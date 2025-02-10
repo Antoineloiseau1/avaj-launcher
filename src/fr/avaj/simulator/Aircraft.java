@@ -14,12 +14,6 @@ public class Aircraft extends Flyable {
 
     @Override
     public void updateConditions() {
-        String weather = weatherTower.getWeather(coordinates);
-        System.out.print(this.getClass().getSimpleName() + "#" + name + "(" + id + "): ");
-        handleWeather(weather);
-    }
-
-    protected void handleWeather(String weather) {
     }
 
     protected void updateCoordinates(int deltaLongitude, int deltaLatitude, int deltaHeight) {

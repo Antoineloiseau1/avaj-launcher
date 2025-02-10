@@ -7,7 +7,13 @@ class Helicopter extends Aircraft {
     }
 
     @Override
-    protected void handleWeather(String weather) {
+    public void updateConditions() {
+        String weather = weatherTower.getWeather(coordinates);
+        System.out.print(this.getClass().getSimpleName() + "#" + name + "(" + id + "): ");
+        handleWeather(weather);
+    }
+
+    private void handleWeather(String weather) {
         switch (weather) {
             case "SUN":
                 System.out.println("It is so hot I think I might roast marshmallows on the dashboard!");

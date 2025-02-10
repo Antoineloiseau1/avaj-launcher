@@ -4,7 +4,7 @@ import java.util.Random;
 
 class WeatherProvider {
 
-    int rand = 0;
+    private int rand = 0;
     static WeatherProvider weatherProvider; // The only instance of the Singleton
     private final String[] weather = {
         "RAIN",

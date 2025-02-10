@@ -2,30 +2,30 @@ package fr.avaj.simulator;
 
 import fr.avaj.exceptions.InvalidCoordinatesException;
 
-public class Coordinates {
+class Coordinates {
 
     private int longitude;
     private int latitude;
     private int height;
 
-    Coordinates(int longitude, int latitude, int height) throws InvalidCoordinatesException {
+    Coordinates(int p_longitude, int p_latitude, int p_height) throws InvalidCoordinatesException { //Package-private constructor
         if (longitude < 0 || latitude < 0 || height < 0) {
-            throw new InvalidCoordinatesException("Coordinates cannot be negative");
+            throw new InvalidCoordinatesException("Coordinates must be positive");
         }
         if (height > 100) {
             throw new InvalidCoordinatesException("Height must not exceed 100");
         }
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.height = height;
-    }
-
-    public int getLatitude() {
-        return latitude;
+        longitude = p_longitude;
+        latitude = p_latitude;
+        height = p_height;
     }
 
     public int getLongitude() {
         return longitude;
+    }
+
+    public int getLatitude() {
+        return latitude;
     }
 
     public int getHeight() {

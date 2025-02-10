@@ -1,6 +1,6 @@
 package fr.avaj.simulator;
 
-public class WeatherTower extends Tower {
+class WeatherTower extends Tower {
 
     //Access the only instance (Singleton) of WeatherProdiver then calls its getCurrentWeather function.
     public String getWeather(Coordinates p_coordinates) {

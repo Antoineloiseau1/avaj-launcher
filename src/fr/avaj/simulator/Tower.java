@@ -3,7 +3,7 @@ package fr.avaj.simulator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Tower {
+class Tower {
 
     private List<Flyable> observers;
 

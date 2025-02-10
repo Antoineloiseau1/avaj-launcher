@@ -21,16 +21,16 @@ import fr.avaj.exceptions.InvalidAircraftTypeException;
 enum AircraftFactory {
 
     INSTANCE;
-    private static int count = 1;
+    private static int id = 1;
 
     public Flyable newAircraft(String p_type, String p_name, Coordinates p_coordinates) throws InvalidAircraftTypeException {
         return switch (p_type) {
             case "Helicopter" ->
-                new Helicopter(count++, p_name, p_coordinates);
+                new Helicopter(id++, p_name, p_coordinates);
             case "JetPlane" ->
-                new JetPlane(count++, p_name, p_coordinates);
+                new JetPlane(id++, p_name, p_coordinates);
             case "Baloon" ->
-                new Baloon(count++, p_name, p_coordinates);
+                new Baloon(id++, p_name, p_coordinates);
             default ->
                 throw new InvalidAircraftTypeException("AircraftFactory: type \"" + p_type + "\" not supported.\nExpected: \"Baloon\" | \"JetPlane\" | \"Helicopter\"");
         };

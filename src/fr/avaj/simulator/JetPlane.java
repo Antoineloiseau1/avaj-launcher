@@ -10,7 +10,7 @@ class JetPlane extends Aircraft {
     protected void handleWeather(String weather) {
         switch (weather) {
             case "SUN":
-                System.out.println("It’s so sunny, I’m thinking of ordering a cold drink!");
+                System.out.println("It is so sunny, I am thinking of ordering a cold drink!");
                 updateCoordinates(0, 10, 2);
                 break;
             case "RAIN":

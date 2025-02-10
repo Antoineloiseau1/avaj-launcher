@@ -32,7 +32,7 @@ enum AircraftFactory {
             case "Baloon" ->
                 new Baloon(count++, p_name, p_coordinates);
             default ->
-                throw new InvalidAircraftTypeException("AircraftFactory: type \"" + p_type + "\" not supported.");
+                throw new InvalidAircraftTypeException("AircraftFactory: type \"" + p_type + "\" not supported.\nExpected: \"Baloon\" | \"JetPlane\" | \"Helicopter\"");
         };
     }
 }

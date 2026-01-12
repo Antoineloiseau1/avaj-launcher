@@ -1,4 +1,4 @@
-package fr.avaj.simulator;
+package com.FortyTwo.avaj.simulator;
 
 abstract class Flyable {
 

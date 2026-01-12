@@ -1,4 +1,4 @@
-package fr.avaj.simulator;
+package com.FortyTwo.avaj.simulator;
 
 public class Aircraft extends Flyable {
 

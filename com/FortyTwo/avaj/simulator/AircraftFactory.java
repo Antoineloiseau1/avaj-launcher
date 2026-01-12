@@ -1,6 +1,6 @@
-package fr.avaj.simulator;
+package com.FortyTwo.avaj.simulator;
 
-import fr.avaj.exceptions.InvalidAircraftTypeException;
+import com.FortyTwo.avaj.exceptions.InvalidAircraftTypeException;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
   this Singleton class also has a factory design pattern.

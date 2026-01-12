@@ -1,6 +1,6 @@
-package fr.avaj.simulator;
+package com.FortyTwo.avaj.simulator;
 
-import fr.avaj.exceptions.InvalidCoordinatesException;
+import com.FortyTwo.avaj.exceptions.InvalidCoordinatesException;
 
 class Coordinates {
 

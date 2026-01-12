@@ -1,9 +1,9 @@
-package fr.avaj.simulator;
+package com.FortyTwo.avaj.simulator;
 
-import fr.avaj.exceptions.InvalidAircraftTypeException;
-import fr.avaj.exceptions.InvalidCoordinatesException;
-import fr.avaj.exceptions.InvalidScenarioException;
-import fr.avaj.exceptions.SimulationsNumberException;
+import com.FortyTwo.avaj.exceptions.InvalidAircraftTypeException;
+import com.FortyTwo.avaj.exceptions.InvalidCoordinatesException;
+import com.FortyTwo.avaj.exceptions.InvalidScenarioException;
+import com.FortyTwo.avaj.exceptions.SimulationsNumberException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

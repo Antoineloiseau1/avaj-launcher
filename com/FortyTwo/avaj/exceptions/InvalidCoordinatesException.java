@@ -1,4 +1,4 @@
-package fr.avaj.exceptions;
+package com.FortyTwo.avaj.exceptions;
 
 public class InvalidCoordinatesException extends NumberFormatException {
 
